@@ -1,18 +1,19 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import { linkTypeDefinitions } from './resolver/links.sdl'
-import { feeds, hello, postLink } from './resolver/links'
+//import { linkTypeDefinitions } from './resolver/links.sdl'
+//import { feeds, hello, postLink } from './resolver/links'
+import { cities, createCity } from './resolver/cities'
+import { citiesTypeDefinitions } from './resolver/cities.sdl'
 
-const linkResolver = {
+const cityResolver = {
   Query: {
-    feeds,
-    hello
+    cities
   },
   Mutation: {
-    postLink
+    createCity
   }
 }
 
 export const schema = makeExecutableSchema({
-  resolvers: [linkResolver],
-  typeDefs: [linkTypeDefinitions],
+  resolvers: [cityResolver],
+  typeDefs: [citiesTypeDefinitions],
 })
