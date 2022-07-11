@@ -1,6 +1,11 @@
 import { PrismaClient } from '@prisma/client'
-const db = new PrismaClient()
+const db = new PrismaClient();
 
+/**
+ * 
+ *          [Cities Table]
+ * 
+ */
 export const cities = (_parent, _args, _context, _info) => {
     return db.cities.findMany()
 }
@@ -49,8 +54,38 @@ export const deleteCity = (_parent, args, _context, _info) => {
     where: { rank }
   })
 }
+/**
+ * 
+ *          [Cities Table]
+ * 
+ */
 
+/**
+ * 
+ *          [City Info Table]
+ * 
+ */
 
+ export const cityInfos = (_parent, _args, _context, _info) => {
+  return db.cityInfos.findMany()
+}
+
+export const createCityInfo = (_parent, args, _context, _info) => {
+  const { population, remarks } = args;
+
+  return db.cityInfos.create({
+    data: {
+      population,
+      remarks
+    },
+  })
+}
+
+/**
+ * 
+ *          [City Info Table]
+ * 
+ */
 
 
 /*

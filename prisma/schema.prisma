@@ -29,3 +29,10 @@ model Cities {
   latitude                 Float
   longitude                Float
 }
+
+model CityInfos {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  population Int
+  remarks    String
+}
