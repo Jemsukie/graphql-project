@@ -19,3 +19,13 @@ model Link {
   description String
   url         String
 }
+
+model Cities {
+  rank                     Int      @id @default(autoincrement())
+  createdAt                DateTime @default(now())
+  city                     String
+  state                    String
+  growth_from_2000_to_2013 String
+  latitude                 Float
+  longitude                Float
+}
