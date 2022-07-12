@@ -4,21 +4,29 @@ export const citiesTypeDefinitions = /* GraphQL */ `
         state: String!
         city: String!
         growth_from_2000_to_2013: String!
-        location: Location!
+        location: Location
         #info: CityInfo!
     }
 
-    input CityInput {
+    type Location {
+        latitude: Float
+        longitude: Float
+    }
+
+    input createCityInput {
+        city: String!,
+        state: String!, 
+        growth_from_2000_to_2013: String!, 
+        latitude: Float!, 
+        longitude: Float!
+    }
+
+    input updateCityInput {
         city: String,
         state: String, 
         growth_from_2000_to_2013: String, 
         latitude: Float, 
         longitude: Float
-    }
-
-    type Location {
-        latitude: Float!
-        longitude: Float!
     }
 
     type CityInfo {
@@ -34,8 +42,8 @@ export const citiesTypeDefinitions = /* GraphQL */ `
     }
 
     type Mutation {
-        createCity(input: CityInput!): City!
-        updateCity(rank: Int!, input: CityInput!): City!
+        createCity(input: createCityInput!): City!
+        updateCity(rank: Int!, input: updateCityInput!): City!
         deleteCity(rank: Int!): City!
         createCityInfo(population: Int!, remarks: String!): CityInfo!
     }

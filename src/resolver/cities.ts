@@ -6,16 +6,28 @@ const db = new PrismaClient();
  *          [Cities Table]
  * 
  */
-export const cities = (_parent, _args, _context, _info) => {
-    return db.cities.findMany()
+export const cities = async(_parent, _args, _context, _info) => {
+    const cities =  await db.cities.findMany();
+
+    return cities.map((city) => {
+      return {...city, location: {
+        latitude: city.latitude,
+        longitude: city.longitude
+      }}
+    });
 }
 
-export const city = (_parent, args, _context, _info) => {
+export const city = async(_parent, args, _context, _info) => {
   const { rank } = args;
-
-  return db.cities.findUnique({
+  const city = await db.cities.findUnique({
     where: { rank },
-  })
+  });
+  console.log(city)
+
+  return {...city, location: {
+    latitude: city?.latitude,
+    longitude: city?.longitude
+  }}
 }
 
 export const createCity = (_parent, args, _context, _info) => {
