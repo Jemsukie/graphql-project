@@ -19,15 +19,25 @@ export const cities = async(_parent, _args, _context, _info) => {
 
 export const city = async(_parent, args, _context, _info) => {
   const { rank } = args;
+
+  const cityInfo = await db.cityInfos.findUnique({
+    where:{
+      id: rank
+    }
+  });
+
   const city = await db.cities.findUnique({
     where: { rank },
   });
-  console.log(city)
 
-  return {...city, location: {
-    latitude: city?.latitude,
-    longitude: city?.longitude
-  }}
+  return {
+    ...city,
+    location: {
+      latitude: city?.latitude,
+      longitude: city?.longitude
+    },
+    info: cityInfo
+  }
 }
 
 export const createCity = (_parent, args, _context, _info) => {
