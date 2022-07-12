@@ -19,30 +19,18 @@ export const city = (_parent, args, _context, _info) => {
 }
 
 export const createCity = (_parent, args, _context, _info) => {
-  const { city, state, growth_from_2000_to_2013, latitude, longitude } = args;
+  const { input } = args;
 
   return db.cities.create({
-    data: {
-      city,
-      state,
-      growth_from_2000_to_2013,
-      latitude,
-      longitude
-    },
+    data: { ...input },
   })
 }
 
 export const updateCity = (_parent, args, _context, _info) => {
-  const { rank, city, state, growth_from_2000_to_2013, latitude, longitude } = args;
+  const { rank, input } = args;
 
   return db.cities.update({
-    data: {
-      city,
-      state,
-      growth_from_2000_to_2013,
-      latitude,
-      longitude
-    },
+    data: { ...input },
     where: { rank }
   })
 }
