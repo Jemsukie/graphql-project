@@ -4,8 +4,9 @@ export const citiesTypeDefinitions = /* GraphQL */ `
         state: String!
         city: String!
         growth_from_2000_to_2013: String!
+        population: Int!
         location: Location!
-        info: CityInfo!
+        info: CityInfo
     }
 
     type Location {

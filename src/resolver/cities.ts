@@ -8,12 +8,17 @@ const db = new PrismaClient();
  */
 export const cities = async(_parent, _args, _context, _info) => {
     const cities =  await db.cities.findMany();
+    const cityInfo =  await db.cityInfos.findMany();
 
-    return cities.map((city) => {
-      return {...city, location: {
-        latitude: city.latitude,
-        longitude: city.longitude
-      }}
+    return cities.map((city, index) => {
+      return {
+        ...city, 
+        location: {
+          latitude: city.latitude,
+          longitude: city.longitude
+        },
+        info: cityInfo[index]
+      }
     });
 }
 

@@ -28,6 +28,7 @@ model Cities {
   growth_from_2000_to_2013 String
   latitude                 Float
   longitude                Float
+  population               String
 }
 
 model CityInfos {
